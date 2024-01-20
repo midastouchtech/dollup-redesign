@@ -49,10 +49,11 @@ export default function Home({ vendors }) {
   const [loading, setLoading] = useState(false);
 
   const getNearbySalons = async () => {
-    console.log('getNearbySalons for location', location)
+    
     try {
         setLoading(true);
       const location = await getCurrentLocation(); // Implement getCurrentLocation function
+      console.log('getNearbySalons for location', location)
       const response = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/near`, {
         method: 'POST',
         headers: {
