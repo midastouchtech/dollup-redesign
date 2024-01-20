@@ -120,8 +120,8 @@ export default function Home({ subCategories }) {
         <h1 className='text-center text-4xl mb-6 font-bold text-gray-700'>
           Book beauty and wellness services locally.
         </h1>
-        <div className='py-6 flex md:flex-row flex-col w-full'>
-          <div className='md:w-1/2 w-full px-2'>
+        <div className='md:py-6 py-1 flex md:flex-row flex-col w-full'>
+          <div className='md:w-1/2 w-full px-2  mb-6 md:mb-1'>
             <Select
               title='Service'
               options={groupedOptions}
@@ -133,7 +133,7 @@ export default function Home({ subCategories }) {
               }}
             />
           </div>
-          <div className='md:w-1/2 w-full px-2'>
+          <div className='md:w-1/2 w-full px-2 mb-6 md:mb-1'>
             <Autocomplete
               className='w-full border-pink-300 border text-gray-700 bg-white hover:bg-pink-100 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
               apiKey={'AIzaSyDka_7ppWokFIBPOxpKQ41NfgP6Q1Q3JBM'}
@@ -148,8 +148,8 @@ export default function Home({ subCategories }) {
             />
           </div>
         </div>
-        <div className='py-6 flex md:flex-row flex-col justify-between w-full'>
-          <div className='md:w-3/4 w-full px-2'>
+        <div className='md:py-6 py-1  flex md:flex-row flex-col justify-between w-full'>
+          <div className='md:w-3/4 w-full px-2  mb-6 md:mb-1'>
             <Datepicker
               value={date}
               onChange={handleDateChange}
@@ -160,7 +160,7 @@ export default function Home({ subCategories }) {
               inputClassName='w-full p-4 ps-10 text-sm text-gray-700 border border-pink-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
             />
           </div>
-          <div className='md:w-1/4  w-full px-2'>
+          <div className='md:w-1/4  w-full px-2  mb-6 md:mb-1'>
             <Time onChange={(t) => setTime(t)} value={time} />
           </div>
         </div>

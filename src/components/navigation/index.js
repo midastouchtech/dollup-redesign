@@ -69,7 +69,7 @@ const Navigation = () => {
       </nav>
       <div
           className={` ${isOpen ? "" : "hidden"
-            } items-center justify-between  w-full  md:w-auto md:order-1 absolute`}
+            } items-center justify-between  w-full  md:w-auto md:order-1 absolute z-10`}
           id="navbar-sticky"
         >
           

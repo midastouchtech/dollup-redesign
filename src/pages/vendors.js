@@ -78,7 +78,7 @@ const VendorsPage = () => {
     return isValid;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     console.log('Form data:', formData);
@@ -107,7 +107,16 @@ const VendorsPage = () => {
         province: formData.province,
         postalCode: formData.postalCode,
       };
-      console.log("sanittized ", sanitizedData)
+      console.log('sanitizedData', sanitizedData);
+      const res = await fetch('http://localhost:3000/api/vendors/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(sanitizedData),
+      });
+      const data = await res.json();
+      console.log('res', data);
     } else {
       console.log('Form has errors. Please fix them before submitting.');
     }
