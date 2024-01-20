@@ -95,6 +95,7 @@ export default function Home({ subCategories }) {
   console.log({ time, date, location, category });
 
   const postSearch = async (data) => {
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/search`, {
       method: 'POST',
       headers: {
