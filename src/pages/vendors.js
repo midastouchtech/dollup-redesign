@@ -1,16 +1,19 @@
 import { useState } from 'react';
 import Layout from '@/components/layout';
 import Autocomplete from 'react-google-autocomplete';
+import Image from 'next/image';
 
 const VendorsPage = () => {
   const [formData, setFormData] = useState({
     salonName: '',
     ownerName: '',
-    storeEmail: '',
-    storePhoneNumber: '',
+    salonCellphoneNumber: '',
     location: '',
     password: '',
     confirmPassword: '',
+    ownerCellphoneNumber: '',
+    salonEmail: '',
+    ownerEmail: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -33,19 +36,35 @@ const VendorsPage = () => {
 
     // Validate email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.storeEmail || !emailRegex.test(formData.storeEmail)) {
-      newErrors.storeEmail = 'Please enter a valid email address';
+    if (!formData.salonEmail || !emailRegex.test(formData.salonEmail)) {
+      newErrors.salonEmail =
+        'Please enter a valid email address for your salon';
+      isValid = false;
+    }
+
+    if (!formData.ownerEmail || !emailRegex.test(formData.ownerEmail)) {
+      newErrors.ownerEmail =
+        'Please enter a valid email address for your email address';
       isValid = false;
     }
 
     // Validate phone number
     const phoneRegex = /^0\d{9}$/;
     if (
-      !formData.storePhoneNumber ||
-      !phoneRegex.test(formData.storePhoneNumber)
+      !formData.salonCellphoneNumber ||
+      !phoneRegex.test(formData.salonCellphoneNumber)
     ) {
-      newErrors.storePhoneNumber =
+      newErrors.salonCellphoneNumber =
         'Please enter a valid 10-digit phone number starting with 0';
+      isValid = false;
+    }
+
+    if (
+      !formData.ownerCellphoneNumber ||
+      !phoneRegex.test(formData.ownerCellphoneNumber)
+    ) {
+      newErrors.ownerCellphoneNumber =
+        'Please enter a valid 10-digit phone number starting with 0 for your cell number';
       isValid = false;
     }
 
@@ -62,10 +81,33 @@ const VendorsPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    console.log('Form data:', formData);
+
     if (validateForm()) {
       // Perform the form submission logic, e.g., send data to the server
       // You can use formData to access the captured data
       console.log('Form submitted:', formData);
+      const sanitizedData = {
+        owner: {
+          name: formData.ownerName,
+          email: formData.ownerEmail,
+          cellNumber: formData.ownerCellphoneNumber,
+        },
+        fullName: formData.ownerName,
+        cell: formData.salonCellphoneNumber,
+        email: formData.salonEmail,
+        storeName: formData.salonName,
+        location: {
+          type: 'Point',
+          coordinates: [formData.location.lng, formData.location.lat],
+        },
+        address: formData.location.address,
+        password: formData.password,
+        country: formData.country,
+        province: formData.province,
+        postalCode: formData.postalCode,
+      };
+      console.log("sanittized ", sanitizedData)
     } else {
       console.log('Form has errors. Please fix them before submitting.');
     }
@@ -74,20 +116,37 @@ const VendorsPage = () => {
   const handlePlaceSelect = (place) => {
     const { formatted_address, geometry } = place;
     const { lat, lng } = geometry.location;
+    console.log('place', place);
     setFormData((prevFormData) => {
       return {
         ...prevFormData,
         location: { address: formatted_address, lat: lat(), lng: lng() },
+        country:
+          place.address_components[place.address_components.length - 1]
+            .long_name,
+        province:
+          place.address_components[place.address_components.length - 2]
+            .long_name,
+        postalCode:
+          place.address_components[place.address_components.length - 3]
+            .long_name,
       };
     });
   };
 
   return (
     <Layout>
-      <div className='container mx-auto p-10 bg-white text-gray-700'>
+      <div className='container mx-auto p-10 bg-white text-gray-700 opacity-90'>
         <div className='flex flex-col md:flex-row'>
           {/* Div 1: Page Text */}
-          <div className='md:w-1/2 pr-8'>
+          <div className='md:w-1/2 md:pr-8'>
+            <Image
+              src='/images/vendors.jpg'
+              width={700}
+              height={700}
+              alt='Picture of the author'
+              className='rounded-lg mb-3'
+            />
             <h1 className='text-4xl font-bold mb-6'>
               Join Dollup and Boost Your Salon!
             </h1>
@@ -152,20 +211,19 @@ const VendorsPage = () => {
                     required
                   />
                 </div>
-                
 
                 <div className='mb-4'>
                   <label
-                    htmlFor='storeEmail'
+                    htmlFor='ownerEmail'
                     className='block text-sm font-medium'
                   >
                     Your Email
                   </label>
                   <input
                     type='email'
-                    id='storeEmail'
-                    name='storeEmail'
-                    value={formData.storeEmail}
+                    id='ownerEmail'
+                    name='ownerEmail'
+                    value={formData.ownerEmail}
                     onChange={handleChange}
                     className='form-input px-4 py-2 w-full border border-gray-300 rounded mt-2 focus:outline-none focus:border-pink-500'
                     required
@@ -174,16 +232,16 @@ const VendorsPage = () => {
 
                 <div className='mb-4'>
                   <label
-                    htmlFor='storePhoneNumber'
+                    htmlFor='ownerCellphoneNumber'
                     className='block text-sm font-medium'
                   >
-                   Your Cellphone Number
+                    Your Cellphone Number
                   </label>
                   <input
-                    type='text'
-                    id='storePhoneNumber'
-                    name='storePhoneNumber'
-                    value={formData.storePhoneNumber}
+                    type='telephone'
+                    id='ownerCellphoneNumber'
+                    name='ownerCellphoneNumber'
+                    value={formData.ownerCellphoneNumber}
                     onChange={handleChange}
                     className='form-input px-4 py-2 w-full border border-gray-300 rounded mt-2 focus:outline-none focus:border-pink-500'
                     required
@@ -206,28 +264,28 @@ const VendorsPage = () => {
                     required
                   />
                 </div>
-                  
+
                 <div className='mb-4'>
                   <label
-                    htmlFor='salonCell'
+                    htmlFor='salonCellphoneNumber'
                     className='block text-sm font-medium'
                   >
-                    Salon Cellphone NUmber
+                    Salon Cellphone Number
                   </label>
                   <input
-                    type='email'
-                    id='salonCell'
-                    name='salonCell'
-                    value={formData.salonCell}
+                    type='telephone'
+                    id='salonCellphoneNumber'
+                    name='salonCellphoneNumber'
+                    value={formData.salonCellphoneNumber}
                     onChange={handleChange}
                     className='form-input px-4 py-2 w-full border border-gray-300 rounded mt-2 focus:outline-none focus:border-pink-500'
                     required
                   />
                 </div>
-                 
+
                 <div className='mb-4'>
                   <label
-                    htmlFor='salonName'
+                    htmlFor='salonEmail'
                     className='block text-sm font-medium'
                   >
                     Salon Email
@@ -243,7 +301,7 @@ const VendorsPage = () => {
                   />
                 </div>
                 <div className='mb-4'>
-                <label
+                  <label
                     htmlFor='location'
                     className='block text-sm font-medium'
                   >
@@ -309,9 +367,21 @@ const VendorsPage = () => {
                   </p>
                 )}
 
-                {errors.storePhoneNumber && (
+                {errors.ownerEmail && (
                   <p className='text-red-500 text-sm mb-4'>
-                    {errors.storePhoneNumber}
+                    {errors.ownerEmail}
+                  </p>
+                )}
+
+                {errors.salonCellphoneNumber && (
+                  <p className='text-red-500 text-sm mb-4'>
+                    {errors.salonCellphoneNumber}
+                  </p>
+                )}
+
+                {errors.ownerCellphoneNumber && (
+                  <p className='text-red-500 text-sm mb-4'>
+                    {errors.ownerCellphoneNumber}
                   </p>
                 )}
 
