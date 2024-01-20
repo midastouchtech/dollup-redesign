@@ -1,11 +1,6 @@
-import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import Layout from '@/components/layout';
 import { useEffect, useState } from 'react';
-import Datepicker from 'react-tailwindcss-datepicker';
-import Time from '@/components/time';
-import Select from 'react-select';
-import Autocomplete from 'react-google-autocomplete';
 import SearchResult from '@/components/SearchResult';
 const inter = Inter({ subsets: ['latin'] });
 
@@ -35,6 +30,20 @@ const formatGroupLabel = (data) => (
   </div>
 );
 
+export async function getServerSideProps({query}) {
+    let vendors = [];
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/list`);
+    const data = await res.json();
+    console.log('found:', data.length);
+    vendors = data;
+    return {
+      props: {
+        vendors,
+      },
+    };
+  }
+  
+
 export default function Home({ vendors }) {
   const [nearbySalons, setNearbySalons] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +52,7 @@ export default function Home({ vendors }) {
     try {
         setLoading(true);
       const location = await getCurrentLocation(); // Implement getCurrentLocation function
-      const response = await fetch('http://localhost:3000/api/vendors/near', {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/near`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -129,15 +138,3 @@ export default function Home({ vendors }) {
   );
 }
 
-export async function getStaticProps() {
-  let vendors = [];
-  const res = await fetch('http://localhost:3000/api/vendors/list');
-  const data = await res.json();
-  console.log('found:', data.length);
-  vendors = data;
-  return {
-    props: {
-      vendors,
-    },
-  };
-}

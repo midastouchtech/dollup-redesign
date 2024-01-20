@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import Layout from '@/components/layout';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Datepicker from 'react-tailwindcss-datepicker';
 import Time from '@/components/time';
 import Select from 'react-select';
@@ -34,6 +34,19 @@ const formatGroupLabel = (data) => (
     <span style={groupBadgeStyles}>{data.options.length}</span>
   </div>
 );
+
+export async function getServerSideProps({query}) {
+  let subCategories = [];
+  const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/sub-categories`);
+  const data = await res.json();
+  console.log('data:', data);
+  subCategories = data;
+  return {
+    props: {
+      subCategories,
+    },
+  };
+}
 
 export default function Home({ subCategories }) {
   console.log('categories:', subCategories);
@@ -82,7 +95,7 @@ export default function Home({ subCategories }) {
   console.log({ time, date, location, category });
 
   const postSearch = async (data) => {
-    const res = await fetch('http://localhost:3000/api/vendors/search', {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/search`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -191,15 +204,4 @@ export default function Home({ subCategories }) {
   );
 }
 
-export async function getStaticProps() {
-  let subCategories = [];
-  const res = await fetch('http://localhost:3000/api/sub-categories');
-  const data = await res.json();
-  console.log('data:', data);
-  subCategories = data;
-  return {
-    props: {
-      subCategories,
-    },
-  };
-}
+

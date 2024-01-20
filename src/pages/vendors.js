@@ -108,7 +108,7 @@ const VendorsPage = () => {
         postalCode: formData.postalCode,
       };
       console.log('sanitizedData', sanitizedData);
-      const res = await fetch('http://localhost:3000/api/vendors/register', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/vendors/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
