@@ -20,6 +20,56 @@ const Navigation = () => {
               Dollup
             </span>
           </Link>
+          <nav className='hidden md:block'>
+        <div className='max-w-screen-xl px-4 py-3 mx-auto'>
+          <div className='flex items-center'>
+            <ul className='flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm'>
+              <li>
+                <Link
+                  href='/'
+                  className='text-gray-700 dark:text-white hover:underline'
+                  aria-current='page'
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/about'
+                  className='text-gray-700 dark:text-white hover:underline'
+                >
+                  About Dollup
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/search'
+                  className='text-gray-700 dark:text-white hover:underline'
+                >
+                  Find Salons
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/salons'
+                  className='text-gray-700 dark:text-white hover:underline'
+                >
+                  All Salons
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href='/vendors'
+                  className='text-gray-700 dark:text-white hover:underline'
+                >
+                  Become a vendor
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+      </nav>
           <div className='flex items-center space-x-6 rtl:space-x-reverse'>
             <Link
               href='tel:5541251234'
@@ -117,56 +167,7 @@ const Navigation = () => {
             </li>
           </ul>
         </div>
-      <nav className='bg-pink-50 dark:bg-gray-700 hidden md:block'>
-        <div className='max-w-screen-xl px-4 py-3 mx-auto'>
-          <div className='flex items-center'>
-            <ul className='flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm'>
-              <li>
-                <Link
-                  href='/'
-                  className='text-gray-700 dark:text-white hover:underline'
-                  aria-current='page'
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/about'
-                  className='text-gray-700 dark:text-white hover:underline'
-                >
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/search'
-                  className='text-gray-700 dark:text-white hover:underline'
-                >
-                  Find Salons
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/salons'
-                  className='text-gray-700 dark:text-white hover:underline'
-                >
-                  All Salons
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href='/vendors'
-                  className='text-gray-700 dark:text-white hover:underline'
-                >
-                  For Vendors
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-        
-      </nav>
+      
     </>
   );
 };

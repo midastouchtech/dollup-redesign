@@ -39,4 +39,19 @@ body {
   padding: 0.5rem;
 }
 
+.css-13cymwt-control{
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+.css-13cymwt-control:focus-within{
+  border-color: transparent !important;
+  outline: none !important;
+}
+
+.css-13cymwt-control:focus{
+  border-color: transparent !important;
+  outline: none !important;
+}
+
 
