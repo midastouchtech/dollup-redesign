@@ -49,7 +49,7 @@ export async function getStaticProps({ query }) {
   return {
     props: {
       subCategories,
-      topCategories
+      topCategories,
     },
   };
 }
@@ -70,29 +70,30 @@ export default function Home({ subCategories, topCategories }) {
     console.log('newValue:', newValue);
     setDate(newValue);
   };
-console.log('subCategories:', subCategories)
-  const groupedOptions = subCategories ? subCategories?.map((subCategory) => {
-      const mainCategory = subCategory.category.name;
-      return {
-        label: mainCategory,
-        id: subCategory.category.id,
-        options: [
-          {
-            label: subCategory.name,
-            value: subCategory.id,
-          },
-        ],
-      };
-    }) :[]
-    .reduce((acc, curr) => {
-      const existing = acc.find((item) => item.id === curr.id);
-      if (existing) {
-        existing.options.push(...curr.options);
-      } else {
-        acc.push(curr);
-      }
-      return acc;
-    }, []);
+  console.log('subCategories:', subCategories);
+  const groupedOptions = subCategories
+    ? subCategories?.map((subCategory) => {
+        const mainCategory = subCategory.category.name;
+        return {
+          label: mainCategory,
+          id: subCategory.category.id,
+          options: [
+            {
+              label: subCategory.name,
+              value: subCategory.id,
+            },
+          ],
+        };
+      })
+    : [].reduce((acc, curr) => {
+        const existing = acc.find((item) => item.id === curr.id);
+        if (existing) {
+          existing.options.push(...curr.options);
+        } else {
+          acc.push(curr);
+        }
+        return acc;
+      }, []);
 
   const categoryOptions = subCategories.map((category) => {
     return { label: category.name, value: category.id };
@@ -197,7 +198,7 @@ console.log('subCategories:', subCategories)
           </div>
         )}
       </div>
-      <div className='w-screen py-20 bg-gray-200 flex flex-col justify-center align-center '>
+      <div className='w-screen py-20 bg-gray-100 flex flex-col justify-center align-center '>
         <h1 className='text-center text-xl mb-6 font-bold text-red-700'>
           WHAT WE SERVE
         </h1>
@@ -247,43 +248,143 @@ console.log('subCategories:', subCategories)
               <p className='text-base'>
                 Review your selected services, and Confirm your booking and
                 proceed to the payment page.
-              
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className='w-screen py-20 bg-gray-200 flex flex-col justify-center align-center '>
-        <h1 className='text-center text-5xl mb-6 font-bold'>
-          TOP CATEGORIES
-        </h1>
+      <div className='w-screen py-20 px-40 bg-gray-100 flex flex-col justify-center align-center '>
+        <h1 className='text-center text-5xl mb-6 font-bold'>TOP CATEGORIES</h1>
         <div className='  grid md:grid-cols-4 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
-          {topCategories?.map((category) => { 
-            
+          {topCategories?.map((category) => {
             return (
-            <div
-              key={category._id.id}
-              className='py-4 flex flex-col justify-center items-center text-center mr-6 '
-            >
-              <div className={`rounded-lg shadow-2xl border border-slate-300 bg-wghite w-full h-72 overflow-hidden bg-[url(`}>
-                <Image
-                  src={category?.thumbnail}
-                  alt='Picture of the author'
-                  height={800}
-                  width={600}
-                />
+              <div
+                key={category._id.id}
+                className='py-4 flex flex-col justify-center items-center text-center mr-6 '
+              >
+                <div
+                  className={`rounded-lg shadow-2xl border border-slate-300 bg-wghite w-full h-60 overflow-hidden bg-[url(`}
+                >
+                  <Image
+                    src={category?.thumbnail}
+                    alt='Picture of the author'
+                    height={800}
+                    width={600}
+                  />
+                </div>
+                <p className='text-base font-bold py-6'>{category.name}</p>
               </div>
-              <p className='text-base font-bold py-6'>{category.name}</p>
-            </div>
-          )})}
+            );
+          })}
         </div>
       </div>
-      <div className='bg-white  grid md:grid-cols-2 grid-cols-1 flex flex-col justify-center items-center section-image '>
-              <div className='bg-pink h-10'></div>
-              <div className='bg-pink h-10'></div>
+      <div className=' px-40 h-fit bg-gray-100 grid md:grid-cols-2 grid-cols-1 flex flex-col justify-center items-center'>
+        <div className='bg-pink px-10 py-10'>
+          <Image
+            src='/images/Testimonial.jpeg'
+            alt='Picture of the author'
+            height={450}
+            width={450}
+          />
+        </div>
+        <div className='bg-pink px-10 py-10'>
+          <h2 className='text-xl py-4 font-bold'>WHAT THEY SAY</h2>
+          <h2 className='text-2xl py-4 font-bold'>
+            What Our Customers Say About Us
+          </h2>
+          <p className='text-base'>
+            Absolutely amazing! The salon booking system has revolutionized my
+            beauty routine. No more waiting on hold or playing phone tag to
+            secure an appointment. With just a few clicks, I can book my
+            preferred services, select my favorite stylist, and choose a
+            convenient time slot all from the comfort of my home. I love it!"
+          </p>
+          <div class='flex items-center mt-4'>
+            <div class='flex-shrink-0 '>
+              <img
+                class='w-16 h-16 rounded-full'
+                src='/images/Testimonial.jpeg'
+                alt='Neil image'
+              />
+            </div>
+            <div class='flex-1 min-w-0 ms-4'>
+              <p class='text-sm font-medium truncate dark:text-white'>
+                Theresa Jordan
+              </p>
+              <p class='text-sm truncate '>Food enthusiast</p>
+            </div>
+            <div class='flex items-center flex-1 min-w-0 ms-4'>
+              <div class='flex items-center space-x-1 rtl:space-x-reverse'>
+                <svg
+                  class='w-4 h-4 text-yellow-300'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 22 20'
+                >
+                  <path d='M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z' />
+                </svg>
+                <svg
+                  class='w-4 h-4 text-yellow-300'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 22 20'
+                >
+                  <path d='M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z' />
+                </svg>
+                <svg
+                  class='w-4 h-4 text-yellow-300'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 22 20'
+                >
+                  <path d='M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z' />
+                </svg>
+                <svg
+                  class='w-4 h-4 text-yellow-300'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 22 20'
+                >
+                  <path d='M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z' />
+                </svg>
+                <svg
+                  class='w-4 h-4 text-gray-200 dark:text-gray-600'
+                  aria-hidden='true'
+                  xmlns='http://www.w3.org/2000/svg'
+                  fill='currentColor'
+                  viewBox='0 0 22 20'
+                >
+                  <path d='M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z' />
+                </svg>
+              </div>
+              <span class='bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3'>
+                4.0
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
-
-
+      <div className='h-fit bg-gray-100 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
+        <div className='bg-red-100 rounded rounded-lg" mx-40 my-10 px-4 h-fit bg-gray-200 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
+          <div className='bg-pink border border-red px-10 py-10 w-92'>
+            <h2 className='text-xl py-4 font-bold'>DOWNLOAD APP</h2>
+            <h2 className='text-2xl py-4 font-bold'>
+              Get Started With Dollup Today!
+            </h2>
+            <p className='text-base'>
+              Book appointments for haircuts, coloring, styling, manicures,
+              pedicures, facials, and more with just a few taps.
+            </p>
+            <button className='rounded rounded-full bg-red-600 text-white py-4 px-4 mt-4'>
+              Get The App
+            </button>
+          </div>
+        </div>
+      </div>
     </Layout>
   );
 }

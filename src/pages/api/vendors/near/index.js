@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
       const searchLocation = {
         type: 'Point',
-        coordinates: [location.lng, location.lat], // Assuming your data structure has longitude and latitude
+        coordinates: [location.lng, location.lat], 
       };
     
       const radiusInKilometers = 500;
