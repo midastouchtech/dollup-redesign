@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useState } from 'react';
+import {connect } from 'react-redux';
 
 
-
-const Navigation = () => {
+const Navigation = ({user}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleIsOpen = () => setIsOpen(!isOpen);
   return (
@@ -15,7 +15,7 @@ const Navigation = () => {
             href='https://flowbite.com'
             className='flex items-center space-x-3 rtl:space-x-reverse'
           >
-            <img src='images/logo.png' className='h-12' alt='Flowbite Logo' />
+            <img src='/images/logo.png' className='h-12' alt='Flowbite Logo' />
             <span className='self-center text-2xl font-semibold whitespace-nowrap dark:text-white'>
               Dollup
             </span>
@@ -70,7 +70,8 @@ const Navigation = () => {
         </div>
         
       </nav>
-          <div className='flex items-center space-x-6 rtl:space-x-reverse'>
+          {!user && 
+            <div className='flex items-center space-x-6 rtl:space-x-reverse'>
             <Link
               href='tel:5541251234'
               className='hidden md:block text-sm  text-gray-500 dark:text-white hover:underline'
@@ -78,13 +79,13 @@ const Navigation = () => {
               +27 78 123 4567
             </Link>
             <Link
-              href='#'
+              href='/login'
               className='hidden md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
             >
               Login
             </Link>
             <Link
-              href='#'
+              href='/signup'
               className='text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
             >
               Sign up
@@ -115,6 +116,30 @@ const Navigation = () => {
               </svg>
             </button>
           </div>
+          }
+          {user &&
+
+            <div className='flex items-center space-x-6 rtl:space-x-reverse'>
+            <Link
+              href="/dashboard"
+              className='hidden md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
+            >
+              Dashboard
+            </Link>
+            <Link
+              href="/logout"
+              className='text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+            >
+              Logout
+            </Link>
+            <p
+              className='text-gray-900  focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+            >
+              {user?.firstName}{" "}{user?.lastName}
+            </p>
+            </div>
+          
+          }
         </div>
       </nav>
       <div
@@ -172,4 +197,10 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+const mapStateToProps = (state) => {
+  return {
+    user: state.auth
+  }
+}
+
+export default connect(mapStateToProps)(Navigation);
