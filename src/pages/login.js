@@ -60,7 +60,7 @@ const Login = ({ login }) => {
   return (
     <Layout>
       <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-        <div className='bg-white p-8 rounded-lg shadow-md max-w-md w-full'>
+        <div className='bg-white p-8  max-w-md w-full'>
           <h1 className='text-2xl font-semibold mb-4 text-center'>Welcome back!</h1>
           <p className='text-gray-600 text-center mb-8'>Please log in to your account to access your dashboard and manage your bookings.
             If you don't have an account yet, you can sign up for free.
