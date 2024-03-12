@@ -43,6 +43,11 @@ export default function Home() {
   const [selectedService, setSelectedService] = useState(booking?.service);
   const [selectedStylist, setSelectedStylist] = useState(booking?.stylist);
   const [selectedProduct, setSelectedProduct] = useState(booking?.product);
+  const [date, setDate] = useState({
+    startDate: new Date(),
+    endDate: new Date(),
+  });
+
   const [loading, setLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
@@ -55,6 +60,10 @@ export default function Home() {
         setSelectedService(booking.service);
         setSelectedStylist(booking.stylist);
         setSelectedProduct(booking.product);
+        setDate({
+          startDate: new Date(booking.date),
+          endDate: new Date(booking.date),
+        });
         setLoading(false);
       });
     }
@@ -62,10 +71,7 @@ export default function Home() {
   const [location, setLocation] = useState('');
 
   const [time, setTime] = useState('10:00');
-  const [date, setDate] = useState({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
+
 
   const handleDateChange = (newValue) => {
     console.log('newValue:', newValue);
