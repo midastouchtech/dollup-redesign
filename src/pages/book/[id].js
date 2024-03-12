@@ -128,10 +128,10 @@ function Home({ id, vendor, user }) {
     });
     const data = await res.json();
     if(!user){
-      router.push(`/login?backto=/bookings/${data.id}`);
+      router.push(`/login?backto=/bookings?id=${data.id}`);
       return;
     }
-    router.push(`/bookings/${data.id}`);
+    router.push(`/bookings?id=${data.id}`);
   }
 
   return (

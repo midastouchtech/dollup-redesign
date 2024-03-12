@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import Layout from '@/components/layout';
 import {connect } from 'react-redux';
 import { useSearchParams } from 'next/navigation';
+import Link from 'next/link';
 
 const Login = ({ login }) => {
   const params = useSearchParams();
@@ -60,8 +61,11 @@ const Login = ({ login }) => {
     <Layout>
       <div className='min-h-screen flex items-center justify-center bg-gray-100'>
         <div className='bg-white p-8 rounded-lg shadow-md max-w-md w-full'>
-          <h1 className='text-2xl font-semibold mb-4 text-center'>Login</h1>
-          <form onSubmit={handleLogin}>
+          <h1 className='text-2xl font-semibold mb-4 text-center'>Welcome back!</h1>
+          <p className='text-gray-600 text-center mb-8'>Please log in to your account to access your dashboard and manage your bookings.
+            If you don't have an account yet, you can sign up for free.
+            </p>
+          <form onSubmit={handleLogin} >
             <div className='mb-4'>
               <label htmlFor='email' className='block text-gray-700'>
                 Email
@@ -71,7 +75,7 @@ const Login = ({ login }) => {
                 id='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className='mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50'
+                className='py-4 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50'
                 required
               />
             </div>
@@ -84,7 +88,7 @@ const Login = ({ login }) => {
                 id='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className='mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50'
+                className='py-4 mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-pink-300 focus:ring focus:ring-pink-200 focus:ring-opacity-50'
                 required
               />
             </div>
@@ -95,7 +99,17 @@ const Login = ({ login }) => {
             >
               Login
             </button>
+            <div className='flex mt-2'>
+            <Link
+             href="/signup"
+             className='text-center bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-gray-400 w-96'
+            >
+              Sign up
+            </Link>
+            </div>
+            
           </form>
+          
         </div>
       </div>
     </Layout>
