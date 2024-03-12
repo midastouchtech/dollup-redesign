@@ -161,7 +161,7 @@ function Home({ id, vendor, user }) {
                         />
                       </div>
                       <div class='p-2 h-1/2 md:h-fit flex items-center justify-end flex-col'>
-                        <h5 class='mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
+                        <h5 class='md:my-4 mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
                           {service.name}
                         </h5>
                         <button
@@ -199,7 +199,7 @@ function Home({ id, vendor, user }) {
                         />
                       </div>
                       <div class='p-2 h-1/2 md:h-fit flex items-center justify-end flex-col'>
-                        <h5 class='mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
+                        <h5 class='md:my-4 mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
                           {stylist.name}
                         </h5>
                         <button
