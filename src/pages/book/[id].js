@@ -152,15 +152,15 @@ function Home({ id, vendor, user }) {
               return (
                 <div>
                   <div key={service.id} className=' h-56 md:h-80 flex items-center justify-center '>
-                    <div class='md:max-w-sm w-24 md:w-44 h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-                      <div class='h-1/2'>
+                    <div class='md:max-w-sm w-24 md:w-44 h-full md:h-82 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                      <div class='h-1/2 md:h-2/3'>
                         <img
                           class='rounded-t-lg w-full h-full'
                           src={service.thumbnail}
                           alt=''
                         />
                       </div>
-                      <div class='p-2 h-1/2 flex items-center justify-end flex-col'>
+                      <div class='p-2 h-1/2 md:h-fit flex items-center justify-end flex-col'>
                         <h5 class='mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
                           {service.name}
                         </h5>
@@ -190,15 +190,15 @@ function Home({ id, vendor, user }) {
               return (
                 <div>
                   <div key={stylist.id} className=' h-56 md:h-80 flex items-center justify-center'>
-                    <div class='md:max-w-sm w-24 md:w-44 h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-                      <div class='h-1/2'>
+                    <div class='md:max-w-sm w-24 md:w-44 h-full md:h-82 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                      <div class='h-1/2 md:h-2/3'>
                         <img
                           class='rounded-t-lg w-full h-full'
                           src={stylist.thumbnail || '/images/lp.jpeg'}
                           alt=''
                         />
                       </div>
-                      <div class='p-2 h-1/2 flex items-center justify-end flex-col'>
+                      <div class='p-2 h-1/2 md:h-fit flex items-center justify-end flex-col'>
                         <h5 class='mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
                           {stylist.name}
                         </h5>
@@ -228,15 +228,15 @@ function Home({ id, vendor, user }) {
               return (
                 <div>
                   <div key={product.id} className=' h-56 md:h-80 flex items-center justify-center'>
-                    <div class='md:max-w-sm w-24 md:w-44 h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
-                      <div class='h-1/2'>
+                    <div class='md:max-w-sm w-24 md:w-44 h-full md:h-82 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
+                      <div class='h-1/2 md:h-2/3'>
                         <img
                           class='rounded-t-lg w-full h-full'
                           src={product.thumbnail}
                           alt=''
                         />
                       </div>
-                      <div class='p-2 h-1/2 flex items-center justify-end flex-col'>
+                      <div class='p-2 h-1/2 md:h-fit flex items-center justify-end flex-col'>
                         <h5 class='mb-2 text-sm font-bold tracking-tight text-gray-900 dark:text-white'>
                           {product.title}
                         </h5>
