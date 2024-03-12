@@ -146,7 +146,7 @@ export default function Home() {
       </div>
       {!loading && (
         <Fragment>
-          <div className='w-screen md:py-20 md:px-40 flex flex-col justify-center align-center '>
+          <div className='w-screen md:py-2 md:px-40 flex flex-col justify-center align-center '>
             <h1 className='text-center text-3xl mb-6 font-bold'></h1>
             <div className=' px-10  grid md:grid-cols-1 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
               <h2 className='text-2xl font-bold text-gray-700 mb-4'>Service</h2>
@@ -183,7 +183,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='my-10 w-screen md:py-20 md:px-40 flex flex-col justify-center align-center '>
+          <div className='my-10 w-screen md:py-2 md:px-40 flex flex-col justify-center align-center '>
             <div className='  grid md:grid-cols-1 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
               <h2 className='text-2xl font-bold text-gray-700 mb-4'>Expert</h2>
               <div>
@@ -220,7 +220,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='my-10 w-screen md:py-20 md:px-40 flex flex-col justify-center align-center '>
+          <div className='my-10 w-screen md:py-2 md:px-40 flex flex-col justify-center align-center '>
             <div className='  grid md:grid-cols-1 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
               <h2 className='text-2xl font-bold text-gray-700 mb-4'>
                 Selected Product
@@ -262,7 +262,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='w-screen md:py-20 md:px-40 bg-gray-100 flex flex-col justify-center align-center '>
+          <div className='w-screen md:py-2 md:px-40 bg-gray-100 flex flex-col justify-center align-center '>
             <div className='md:py-6 py-1  flex md:flex-row flex-col justify-between w-full'>
               <div className='md:w-3/4 w-full px-2  mb-6 md:mb-1'>
                 <Datepicker

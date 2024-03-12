@@ -15,7 +15,7 @@ const Layout = ({ children, login }) => {
     , []);
 
     return (
-        <div className="layout bg-[url('/images/bg.jpg')] bg-cover">
+        <div className="layout bg-[url('/images/bg.jpg')] bg-cover min-h-screen">
             <Navigation />
             <main>{children}</main>
             <Footer />
