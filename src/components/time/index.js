@@ -12,7 +12,7 @@ export default function Time({ value="12:00", onChange }) {
     }
     , [hours, minutes, selectedHours, selectedMinutes]);
   return (
-    <div className='p-2 w-full h-full bg-white rounded-lg shadow-xl text-sm text-gray-700 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
+    <div className='p-2 w-full h-full bg-white rounded-lg shadow-xl text-sm text-gray-700 border border-pink-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'>
       <div className='flex h-full justify-center flex-row'>
         <select
           name='hours'

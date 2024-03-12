@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         coordinates: [location.lng, location.lat], 
       };
     
-      const radiusInKilometers = 2000;
+      const radiusInKilometers = 500;
       const nearestVendorsWithServices = await collection.aggregate([
         {
           $geoNear: {

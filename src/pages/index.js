@@ -143,8 +143,8 @@ export default function Home({ subCategories, topCategories }) {
         <h1 className='text-center text-4xl mb-6 font-bold text-gray-100 drop-shadow-md'>
           Book beauty and wellness services locally.
         </h1>
-        <div className='md:py-6  flex md:flex-row flex-col w-full rounded-full md:bg-white px-4'>
-          <div className='md:w-1/2 w-full px-2  mb-2 md:mb-1'>
+        <div className='md:py-6  flex md:flex-row flex-col w-full rounded-full bg-white px-4'>
+          <div className='md:w-1/2 w-full px-2  mb-6 md:mb-1'>
             <Select
               title='Service'
               placeholder='Select a service'
@@ -157,7 +157,7 @@ export default function Home({ subCategories, topCategories }) {
               }}
             />
           </div>
-          <div className='md:w-1/2 w-full px-2 mb-1 md:mb-1'>
+          <div className='md:w-1/2 w-full px-2 mb-6 md:mb-1'>
             <Autocomplete
               className='w-full border-transparent border text-gray-700 bg-white hover:bg-pink-100 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
               apiKey={'AIzaSyDka_7ppWokFIBPOxpKQ41NfgP6Q1Q3JBM'}
@@ -202,13 +202,13 @@ export default function Home({ subCategories, topCategories }) {
         <h1 className='text-center text-xl mb-6 font-bold text-red-700'>
           WHAT WE SERVE
         </h1>
-        <p className='md:px-60 text-4xl text-center'>
+        <p className='px-60 text-4xl text-center'>
           your ultimate beauty companion designed to make
           <br />
           your salon experience seamless and stress-free.a.
         </p>
         <div
-          className={`h-full w-full py-10 px-10 text-center md:text-left bg-red
+          className={`h-full w-full px-10 py-10 px-10 text-center md:text-left bg-red
            text-center`}
         >
           <div className='  grid md:grid-cols-5 grid-cols-1 flex flex-col justify-center items-center section-image '>
@@ -253,8 +253,8 @@ export default function Home({ subCategories, topCategories }) {
           </div>
         </div>
       </div>
-      <div className='w-screen md:py-20 md:px-40 bg-gray-100 flex flex-col justify-center align-center '>
-        <h1 className='text-center text-2xl mb-6 font-bold'>TOP CATEGORIES</h1>
+      <div className='w-screen py-20 px-40 bg-gray-100 flex flex-col justify-center align-center '>
+        <h1 className='text-center text-5xl mb-6 font-bold'>TOP CATEGORIES</h1>
         <div className='  grid md:grid-cols-4 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
           {topCategories?.map((category) => {
             return (
@@ -278,7 +278,7 @@ export default function Home({ subCategories, topCategories }) {
           })}
         </div>
       </div>
-      <div className=' md:px-40 h-fit bg-gray-100 grid md:grid-cols-2 grid-cols-1 flex flex-col justify-center items-center'>
+      <div className=' px-40 h-fit bg-gray-100 grid md:grid-cols-2 grid-cols-1 flex flex-col justify-center items-center'>
         <div className='bg-pink px-10 py-10'>
           <Image
             src='/images/Testimonial.jpeg'
@@ -369,7 +369,7 @@ export default function Home({ subCategories, topCategories }) {
         </div>
       </div>
       <div className='h-fit bg-gray-100 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
-        <div className='bg-red-100 rounded rounded-lg" md:mx-40 md:my-10 px-4 h-fit bg-gray-200 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
+        <div className='bg-red-100 rounded rounded-lg" mx-40 my-10 px-4 h-fit bg-gray-200 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
           <div className='bg-pink border border-red px-10 py-10 w-92'>
             <h2 className='text-xl py-4 font-bold'>DOWNLOAD APP</h2>
             <h2 className='text-2xl py-4 font-bold'>

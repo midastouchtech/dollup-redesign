@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Link from "next/link";
 export default function SearchRsult({result, category}) {
  const [selectedTab, setSelectedTab] = useState("about");
   return (
@@ -66,8 +65,8 @@ export default function SearchRsult({result, category}) {
           <p class='mb-3 text-gray-500 dark:text-gray-400'>
             {result?.bio}
           </p>
-          <Link
-            href={`/book/${result?.id}`}
+          <a
+            href='#'
             class='inline-flex items-center bg-pink-500 py-2 px-4 rounded-lg font-medium text-white hover:text-blue-800 dark:text-blue-500 dark:hover:text-blue-700'
           >
             Book
@@ -86,7 +85,7 @@ export default function SearchRsult({result, category}) {
                 d='m1 9 4-4-4-4'
               />
             </svg>
-          </Link>
+          </a>
         </div>
         <div
           class={`${selectedTab !== "services" ? "hidden " : ""} p-4 bg-white rounded-lg md:p-8 dark:bg-gray-800`}
