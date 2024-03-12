@@ -9,7 +9,6 @@ export default async function handler(req, res) {
       const collection = db.collection('bookings');
       const { id } = req.query;
       const booking = await collection.findOne({ _id: new ObjectId(id) });
-      console.log("api found booking", booking)
       res.status(200).json({ ...booking});
     } else {
       res.status(405).json({ message: 'Method not allowed' });

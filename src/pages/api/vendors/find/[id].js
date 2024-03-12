@@ -12,7 +12,6 @@ export default async function handler(req, res) {
       const services = await db.collection('services').find({ "vendor.id": id }).toArray();
       const stylists = await db.collection('stylists').find({ "vendor.id": id }).toArray();
       const products = await db.collection('products').find({ "vendor.id": id }).toArray();
-      console.log("api found vendor", vendor, services)
       res.status(200).json({ ...vendor, services, stylists, products });
     } else {
       res.status(405).json({ message: 'Method not allowed' });
