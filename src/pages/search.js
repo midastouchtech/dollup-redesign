@@ -35,7 +35,7 @@ const formatGroupLabel = (data) => (
   </div>
 );
 
-export async function getServerSideProps({ query }) {
+export async function getStaticProps({ query }) {
   let subCategories = [];
   const subs_res = await fetch(
     `${process.env.NEXT_PUBLIC_WEBSITE_URL}/api/sub-categories`

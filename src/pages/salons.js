@@ -89,7 +89,7 @@ export default function Home({ vendors }) {
     // You can uncomment the following line to automatically get nearby salons on page load
     // getNearbySalons();
   }, []);
-
+  console.log('vendors', vendors)
   return (
     <Layout>
       <div className='container mx-auto   md:px-60 py-20 flex flex-col justify-center align-center '>
@@ -107,7 +107,7 @@ export default function Home({ vendors }) {
                   <h3 className='text-lg font-bold text-gray-700 mb-2'>
                     Nearby Salons:
                   </h3>
-                  {nearbySalons.map((result) => (
+                  {nearbySalons?.map((result) => (
                     <div key={result.id} className='mb-4 w-full'>
                       <SearchResult result={result} />
                     </div>
@@ -124,7 +124,7 @@ export default function Home({ vendors }) {
               <h3 className='text-lg font-bold text-gray-700 mt-4'>
                 All Salons:
               </h3>
-              {vendors.map((result) => (
+              {vendors?.map((result) => (
                 <div key={result.id} className='mb-4 w-full'>
                   <SearchResult result={result} />
                 </div>
