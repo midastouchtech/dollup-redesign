@@ -40,22 +40,53 @@ const BookingsTab = ({ user }) => {
           )}
           {!isLoading &&
             bookings?.map((booking) => (
-              <Fragment key={booking._id}>
-                <tr className='border border-gray-200 py-2'>
-                  <th> Date</th>
-                  <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{moment(booking.date).format('DD MMM YYYY')}</td>
+              <div
+                key={booking._id}
+                className='p-2 my-2 shadow shadow-lg w-full bg-white dark:bg-gray-800 rounded-lg'
+              >
+                <tr className='py-2 w-full'>
+                  <th className='w-2/4'> Date</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    {moment(booking.date).format('DD MMM YYYY')}
+                  </td>
                 </tr>
-                <tr className='border border-gray-200 py-4 px-4'>
-                  <th> Salon</th>
-                  <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{booking.service.vendor.storeName}</td>
+                <tr className='py-2'>
+                  <th className='w-2/4'> Time</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    {booking.time}
+                  </td>
                 </tr>
-                <tr className='border border-gray-200 py-4 px-4'>
-                  <th> Service</th>
-                  <td class="border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400">{booking.service.name}</td>
+                <tr className='py-4 px-4'>
+                  <th className='w-2/4'> Salon</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    {booking.service.vendor.storeName}
+                  </td>
                 </tr>
-                <tr className='border border-gray-200 py-4 px-4'>
-                  <th> Actions</th>
-                  <td className='flex space-x-2 border-b border-slate-100 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                <tr className='py-4 px-4'>
+                  <th className='w-2/4'> Service</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    {booking.service.name}
+                  </td>
+                </tr>
+                <tr className='py-4 px-4'>
+                  <th className='w-2/4'> Price</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    R {booking.service.salePrice}
+                  </td>
+                </tr>
+                <tr className='py-4 px-4'>
+                  <th className='w-2/4'> Service Image</th>
+                  <td class=' w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
+                    <img
+                      src={booking.service.thumbnail}
+                      width='100px'
+                      height='100px'
+                    />
+                  </td>
+                </tr>
+                <tr className='py-4 px-4'>
+                  <th className='w-2/4'> Actions</th>
+                  <td className='flex space-x-2  w-2/4 dark:border-slate-700 p-4 text-slate-500 dark:text-slate-400'>
                     <button className='bg-blue-500 text-white px-2 py-1 rounded-md'>
                       Edit
                     </button>
@@ -64,7 +95,7 @@ const BookingsTab = ({ user }) => {
                     </button>
                   </td>
                 </tr>
-              </Fragment>
+              </div>
             ))}
         </tbody>
       </table>

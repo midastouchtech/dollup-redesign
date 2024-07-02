@@ -59,14 +59,6 @@ const Navigation = ({ user }) => {
                   </li>
                   <li>
                     <Link
-                      href='/about'
-                      className='text-gray-700 dark:text-white hover:underline'
-                    >
-                      About Dollup
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
                       href='/search'
                       className='text-gray-700 dark:text-white hover:underline'
                     >
@@ -90,34 +82,50 @@ const Navigation = ({ user }) => {
                     </Link>
                   </li>
                 </ul>
-                {!user && 
-            <div className='ml-24 flex items-center space-x-6 rtl:space-x-reverse'>
-            <Link
-              href='tel:5541251234'
-              className='hidden md:block text-sm  text-gray-500 dark:text-white hover:underline'
-            >
-              +27 78 123 4567
-            </Link>
-            <Link
-              href='/login'
-              className='hidden md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
-            >
-              Login
-            </Link>
-            <Link
-              href='/signup'
-              className='hidden md:block text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
-            >
-              Sign up
-            </Link>
-          </div>
-          }
+                {!user && (
+                  <div className='ml-24 flex items-center space-x-6 rtl:space-x-reverse'>
+                    <Link
+                      href='tel:5541251234'
+                      className='hidden md:block text-sm  text-gray-500 dark:text-white hover:underline'
+                    >
+                      +27 78 123 4567
+                    </Link>
+                    <Link
+                      href='/login'
+                      className='hidden md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href='/signup'
+                      className='hidden md:block text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+                    >
+                      Sign up
+                    </Link>
+                  </div>
+                )}
+                {user && (
+                  <div className='ml-24 flex items-center space-x-6 rtl:space-x-reverse'>
+                    <Link
+                      href='/dashboard'
+                      className=' text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      href='/logout'
+                      className='text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+                    >
+                      Logout
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </nav>
         </div>
       </nav>
-      
+
       <div
         className={` ${
           isOpen ? '' : 'hidden'
@@ -183,28 +191,28 @@ const Navigation = ({ user }) => {
                 </Link>
               </div>
             )}
-            {!user && 
-            <div className='flex items-center  rtl:space-x-reverse'>
-            <Link
-              href='tel:5541251234'
-              className='hidden md:block text-sm  text-gray-500 dark:text-white hover:underline'
-            >
-              +27 78 123 4567
-            </Link>
-            <Link
-              href='/login'
-              className='ml-2 mr-2 md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
-            >
-              Login
-            </Link>
-            <Link
-              href='/signup'
-              className='text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
-            >
-              Sign up
-            </Link>
-          </div>
-          }
+            {!user && (
+              <div className='flex items-center  rtl:space-x-reverse'>
+                <Link
+                  href='tel:5541251234'
+                  className='hidden md:block text-sm  text-gray-500 dark:text-white hover:underline'
+                >
+                  +27 78 123 4567
+                </Link>
+                <Link
+                  href='/login'
+                  className='ml-2 mr-2 md:block text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800'
+                >
+                  Login
+                </Link>
+                <Link
+                  href='/signup'
+                  className='text-white bg-pink-700 hover:bg-pink-800 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
+                >
+                  Sign up
+                </Link>
+              </div>
+            )}
           </li>
         </ul>
       </div>

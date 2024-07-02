@@ -160,7 +160,7 @@ export default function Home({ subCategories, topCategories }) {
           <div className='md:w-1/2 w-full px-2 mb-1 md:mb-1'>
             <Autocomplete
               className='w-full border-transparent border text-gray-700 bg-white hover:bg-pink-100 focus:ring-4 focus:outline-none focus:ring-pink-300 font-medium rounded-lg text-sm px-5 py-4 text-center inline-flex items-center dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800'
-              apiKey={'AIzaSyDka_7ppWokFIBPOxpKQ41NfgP6Q1Q3JBM'}
+              apiKey={'AIzaSyDyQM3_-efaShAM-axXn1jKyTO5rOJKkdQ'}
               onPlaceSelected={(place) => {
                 console.log(place);
                 setLocation(place);
@@ -202,14 +202,14 @@ export default function Home({ subCategories, topCategories }) {
         <h1 className='text-center text-xl mb-6 font-bold text-red-700'>
           WHAT WE SERVE
         </h1>
-        <p className='md:px-60 text-4xl text-center'>
+        <p className='md:px-60 text-4xl text-center text-gray-500'>
           your ultimate beauty companion designed to make
           <br />
           your salon experience seamless and stress-free.a.
         </p>
         <div
           className={`h-full w-full py-10 px-10 text-center md:text-left bg-red
-           text-center`}
+           text-center text-gray-500`}
         >
           <div className='  grid md:grid-cols-5 grid-cols-1 flex flex-col justify-center items-center section-image '>
             <div className='py-4 flex flex-col justify-center items-center text-center'>
@@ -253,29 +253,31 @@ export default function Home({ subCategories, topCategories }) {
           </div>
         </div>
       </div>
-      <div className='w-screen md:py-20 md:px-40 bg-gray-100 flex flex-col justify-center align-center '>
+      <div className='w-screen md:py-20 md:px-40 bg-gray-100 flex flex-col justify-center align-center text-gray-500'>
         <h1 className='text-center text-2xl mb-6 font-bold'>TOP CATEGORIES</h1>
         <div className='  grid md:grid-cols-4 grid-cols-1 px-6 flex flex-col justify-center items-center section-image '>
-          {topCategories?.map((category) => {
-            return (
-              <div
-                key={category._id.id}
-                className='py-4 flex flex-col justify-center items-center text-center mr-6 '
-              >
+          {topCategories
+            ?.filter((c) => c._id)
+            .map((category) => {
+              return (
                 <div
-                  className={`rounded-lg shadow-2xl border border-slate-300 bg-wghite w-full h-60 overflow-hidden bg-[url(`}
+                  key={category?._id?.id}
+                  className='py-4 flex flex-col justify-center items-center text-center mr-6 '
                 >
-                  <Image
-                    src={category?.thumbnail}
-                    alt='Picture of the author'
-                    height={800}
-                    width={600}
-                  />
+                  <div
+                    className={`rounded-lg shadow-2xl border border-slate-300 bg-wghite w-full h-60 overflow-hidden bg-[url(`}
+                  >
+                    <Image
+                      src={category?.thumbnail}
+                      alt='Picture of the author'
+                      height={800}
+                      width={600}
+                    />
+                  </div>
+                  <p className='text-base font-bold py-6'>{category?.name}</p>
                 </div>
-                <p className='text-base font-bold py-6'>{category.name}</p>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
       <div className=' md:px-40 h-fit bg-gray-100 grid md:grid-cols-2 grid-cols-1 flex flex-col justify-center items-center'>
@@ -287,7 +289,7 @@ export default function Home({ subCategories, topCategories }) {
             width={450}
           />
         </div>
-        <div className='bg-pink px-10 py-10'>
+        <div className='bg-pink px-10 py-10 text-gray-500'>
           <h2 className='text-xl py-4 font-bold'>WHAT THEY SAY</h2>
           <h2 className='text-2xl py-4 font-bold'>
             What Our Customers Say About Us
@@ -368,7 +370,7 @@ export default function Home({ subCategories, topCategories }) {
           </div>
         </div>
       </div>
-      <div className='h-fit bg-gray-100 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
+      <div className='h-fit bg-gray-100 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center text-gray-500'>
         <div className='bg-red-100 rounded rounded-lg" md:mx-40 md:my-10 px-4 h-fit bg-gray-200 grid md:grid-cols-1 grid-cols-1 flex flex-col justify-center items-center'>
           <div className='bg-pink border border-red px-10 py-10 w-92'>
             <h2 className='text-xl py-4 font-bold'>DOWNLOAD APP</h2>

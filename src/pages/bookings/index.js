@@ -17,7 +17,9 @@ import { v4 as uuidv4 } from 'uuid';
 import moment from 'moment';
 import { postToURL } from '@/lib/payfast';
 import { useSearchParams } from 'next/navigation';
-
+import TimePicker from 'react-time-picker';
+import 'react-time-picker/dist/TimePicker.css';
+import 'react-clock/dist/Clock.css';
 const PAYFAST_URL = process.env.NEXT_PUBLIC_PAYFAST_URL;
 const WEBSITE_URL = process.env.NEXT_PUBLIC_WEBSITE_URL;
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -28,7 +30,7 @@ function SimpleArrow(props) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={`${className} bg-gray-100 rounded-full w-8 h-8`}
+      className={`${className} bg-gray-100 rounded-sm w-8 h-8`}
       onClick={onClick}
     />
   );
@@ -39,7 +41,7 @@ export default function Home() {
   const bookingId = SearchParams.get('id');
   console.log('bookingId', bookingId, SearchParams.get('b'));
   const [booking, setBooking] = useState(null);
-
+  const [time, setTime] = useState('10:00');
   const [selectedService, setSelectedService] = useState(booking?.service);
   const [selectedStylist, setSelectedStylist] = useState(booking?.stylist);
   const [selectedProduct, setSelectedProduct] = useState(booking?.product);
@@ -64,14 +66,12 @@ export default function Home() {
           startDate: new Date(booking.date),
           endDate: new Date(booking.date),
         });
+        setTime(booking.time || '10:00');
         setLoading(false);
       });
     }
   }, [bookingId]);
   const [location, setLocation] = useState('');
-
-  const [time, setTime] = useState('10:00');
-
 
   const handleDateChange = (newValue) => {
     console.log('newValue:', newValue);
@@ -195,7 +195,7 @@ export default function Home() {
                     <div class='h-1/2'>
                       <img
                         class='rounded-t-lg w-full h-full'
-                        src={selectedStylist?.thumbnail || '/images/lp.jpeg'}
+                        src={selectedStylist?.avatar || '/images/lp.jpeg'}
                         alt=''
                       />
                     </div>
@@ -271,13 +271,21 @@ export default function Home() {
                   asSingle={true}
                   primaryColor={'fuchsia'}
                   containerClassName={'relative'}
-                  inputClassName='w-full p-6 ps-10 text-sm text-gray-700 rounded-full border border-gray-900 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  inputClassName='w-full p-6 ps-10 text-sm text-gray-700 rounded-sm border border-pink-600 bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                />
+              </div>
+              <div className='md:w-1/4 w-full mb-6 md:mb-1 flex items-center justify-center px-2 '>
+                <TimePicker
+                  onChange={setTime}
+                  value={time}
+                  disabled
+                  className='w-full p-6 rounded-sm border border-pink-600  text-pink-700 bg-white font-bold text-l'
                 />
               </div>
               <div className='md:w-1/4 w-full px-2  mb-6 md:mb-1'>
                 <button
                   onClick={handleSubmit}
-                  className='w-full p-6 ps-10 text-xl text-gray-100 rounded-full  bg-red-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+                  className='w-full p-6 ps-10 text-xl text-gray-100 rounded-sm  bg-pink-600 focus:ring-blue-500 focus:border-blue-500 dark:bg-pink-700 dark:border-pink-600 dark:placeholder-pink-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
                 >
                   Pay
                 </button>
@@ -309,7 +317,7 @@ export default function Home() {
               <div class='flex items-center mt-4'>
                 <div class='flex-shrink-0 '>
                   <img
-                    class='w-16 h-16 rounded-full'
+                    class='w-16 h-16 rounded-sm'
                     src='/images/Testimonial.jpeg'
                     alt='Neil image'
                   />
@@ -383,7 +391,7 @@ export default function Home() {
                   Book appointments for haircuts, coloring, styling, manicures,
                   pedicures, facials, and more with just a few taps.
                 </p>
-                <button className='rounded rounded-full bg-red-600 text-white py-4 px-4 mt-4'>
+                <button className='rounded rounded-sm bg-pink-600 text-white py-4 px-4 mt-4'>
                   Get The App
                 </button>
               </div>
@@ -391,9 +399,9 @@ export default function Home() {
           </div>
         </Fragment>
       )}
-      {loading &&(
+      {loading && (
         <div className='flex justify-center items-center bg-gray-300 h-96'>
-          <div className='w-20 h-20 border-t-4 border-b-4 border-red-500 rounded-full animate-spin'></div>
+          <div className='w-20 h-20 border-t-4 border-b-4 border-red-500 rounded-sm animate-spin'></div>
         </div>
       )}
     </Layout>
